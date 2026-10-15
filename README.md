@@ -77,6 +77,7 @@ CyberGuard/
 │   ├── style.css             # Global styles & design system
 │   ├── layout.css            # Navigation and layout
 │   ├── landing.css           # Landing page styles
+│   ├── auth.css              # Sign-in page styles
 │   ├── dashboard.css         # Dashboard styles
 │   ├── tools.css             # Security tools styles
 │   ├── academy.css           # Academy styles
@@ -101,7 +102,17 @@ CyberGuard/
 
 ## 🔑 Account Sign-In Setup
 
-The sign-in page uses Firebase Authentication. Authentication is optional; the learning tools continue to work without an account. Progress remains in this browser's local storage and is not synced to Firebase.
+The sign-in page uses Firebase Authentication only; the app does not use Firebase Storage. An account is required to use the learning pages: visitors who are not signed in are redirected to `auth.html`. The landing and About pages stay public. This check runs in the browser, so it controls the app's flow but is not server-side protection. 
+
+### Cross-device progress sync (Cloud Firestore)
+
+Progress is stored per user at `users/{uid}` in Cloud Firestore (free Spark tier) and merged on sign-in, so it follows you between devices. To enable it:
+
+1. Firebase Console → Build → Firestore Database → Create database (production mode).
+2. Rules tab → paste the contents of `firestore.rules` → Publish.
+3. Authentication → Settings → Authorized domains: make sure your site's domain is listed.
+
+Without these steps, sync fails silently and progress stays in the local browser only.
 
 1. Create a Firebase project and register a Web app in the Firebase console.
 2. In **Authentication → Sign-in method**, enable **Email/Password** and **Google**.

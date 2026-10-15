@@ -21,6 +21,13 @@ function initializeAuthPage() {
 
   let auth = null;
   let isSignUp = false;
+  let redirectAfterSignIn = false;
+
+  const requestedPage = new URLSearchParams(location.search).get('next');
+  const hasNextPage = /^[a-z0-9-]+\.html$/i.test(requestedPage || '')
+    && !['auth.html', 'index.html'].includes(requestedPage.toLowerCase());
+  const nextPage = hasNextPage ? requestedPage : 'academy.html';
+  document.getElementById('signed-in-continue').href = nextPage;
 
   function showStatus(message, type) {
     status.textContent = message;
@@ -94,6 +101,10 @@ function initializeAuthPage() {
   }
 
   auth.onAuthStateChanged(user => {
+    if (user && (hasNextPage || redirectAfterSignIn)) {
+      location.replace(nextPage);
+      return;
+    }
     authPanel.hidden = Boolean(user);
     signedInPanel.hidden = !user;
     if (user) {
@@ -120,6 +131,7 @@ function initializeAuthPage() {
     }
 
     submitButton.disabled = true;
+    redirectAfterSignIn = true;
     showStatus(isSignUp ? 'Creating your account…' : 'Signing in…', 'info');
     try {
       if (isSignUp) {
@@ -128,6 +140,7 @@ function initializeAuthPage() {
         await auth.signInWithEmailAndPassword(email, password);
       }
     } catch (error) {
+      redirectAfterSignIn = false;
       showAuthError(error);
     } finally {
       submitButton.disabled = false;
@@ -136,10 +149,12 @@ function initializeAuthPage() {
 
   googleButton.addEventListener('click', async () => {
     googleButton.disabled = true;
+    redirectAfterSignIn = true;
     showStatus('Opening Google sign-in…', 'info');
     try {
       await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     } catch (error) {
+      redirectAfterSignIn = false;
       showAuthError(error);
     } finally {
       googleButton.disabled = false;

@@ -1,0 +1,21 @@
+.profile-auth-card {
+  margin-top: 2rem;
+}
+
+.profile-auth-account {
+  overflow-wrap: anywhere;
+}
+
+.profile-auth-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.profile-auth-status {
+  margin: 0.75rem 0 0;
+  color: var(--danger-color);
+}
+
+.profile-auth-card [hidden] {
+  display: none !important;
+}

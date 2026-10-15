@@ -1,8 +1,15 @@
 // Storage Module - Handles all localStorage operations
+function notifyCloudSync(replace) {
+  if (typeof CloudSync !== 'undefined') {
+    CloudSync.schedulePush(replace);
+  }
+}
+
 const Storage = {
   // User Profile
   saveProfile(profile) {
     localStorage.setItem('cyberguard_profile', JSON.stringify(profile));
+    notifyCloudSync(false);
   },
 
   getProfile() {
@@ -132,6 +139,7 @@ const Storage = {
     });
     activities = activities.slice(-100); // Keep last 100 activities
     localStorage.setItem('cyberguard_activities', JSON.stringify(activities));
+    notifyCloudSync(false);
   },
 
   getActivities() {
@@ -141,6 +149,7 @@ const Storage = {
 
   clearActivities() {
     localStorage.removeItem('cyberguard_activities');
+    notifyCloudSync(true);
   },
 
   // Settings
@@ -178,6 +187,7 @@ const Storage = {
       if (data.activities) {
         localStorage.setItem('cyberguard_activities', JSON.stringify(data.activities));
       }
+      notifyCloudSync(true);
       
       return true;
     } catch (error) {
@@ -190,6 +200,7 @@ const Storage = {
   resetAll() {
     localStorage.removeItem('cyberguard_profile');
     localStorage.removeItem('cyberguard_activities');
+    notifyCloudSync(true);
   },
 
   // Learning History

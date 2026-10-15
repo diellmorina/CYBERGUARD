@@ -24,7 +24,8 @@
         <li><a href="#features" class="nav-link">Features</a></li>
         <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
-        <li><a href="auth.html" class="nav-link">Sign In</a></li>
+        <li><a id="landing-sign-in" href="auth.html" class="nav-link">Sign In</a></li>
+        <li><button id="landing-sign-out" class="nav-link" type="button" hidden>Sign Out</button></li>
         <li><button id="landing-theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button></li>
       </ul>
       <button id="mobile-nav-toggle" class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
@@ -38,8 +39,7 @@
         <h1 class="hero-title">Stay Aware. Stay Secure.</h1>
         <p class="hero-subtitle">Master cybersecurity skills with interactive tools, real-world scenarios, and expert guidance.</p>
         <div class="hero-buttons">
-          <a href="dashboard.html" class="btn btn-primary btn-large">Explore Security Tools</a>
-          <a href="academy.html" class="btn btn-secondary btn-large">Start Learning</a>
+          <a href="auth.html?next=academy.html" class="btn btn-primary btn-large">Start Learning</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -167,7 +167,7 @@
             <span class="faq-toggle">+</span>
           </button>
           <div class="faq-answer">
-            <p>No. All your data is stored locally in your browser using localStorage. Nothing is sent to our servers. You have complete privacy and control.</p>
+            <p>Your progress is stored in your account (Firebase) so it syncs across your devices. Only your learning progress is saved, and only you can read it.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -237,5 +237,8 @@
   <script src="js/storage.js"></script>
   <script src="js/app.js"></script>
   <script src="js/landing.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
 </body>
 </html>

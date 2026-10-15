@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function setupLandingPage() {
+  setupLandingAuth();
+
   // Mobile menu toggle
   const mobileToggle = document.getElementById('mobile-nav-toggle');
   const navMenu = document.querySelector('.navbar-menu');
@@ -65,6 +67,61 @@ function setupLandingPage() {
       updateThemeButtonText();
     });
   }
+}
+
+function setupLandingAuth() {
+  const signInLink = document.getElementById('landing-sign-in');
+  const signOutButton = document.getElementById('landing-sign-out');
+  if (!signInLink || !signOutButton || typeof firebase === 'undefined') {
+    return;
+  }
+
+  const config = window.CYBERGUARD_FIREBASE_CONFIG;
+  const requiredConfig = ['apiKey', 'authDomain', 'projectId', 'appId'];
+  const isConfigured = config
+    && requiredConfig.every(key => typeof config[key] === 'string'
+      && config[key].length > 0
+      && !config[key].startsWith('YOUR_'));
+
+  if (!isConfigured) {
+    return;
+  }
+
+  let auth;
+  try {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config);
+    }
+    auth = firebase.auth();
+  } catch (error) {
+    console.error('Firebase initialization failed:', error);
+    return;
+  }
+
+  auth.onAuthStateChanged(user => {
+    signInLink.hidden = Boolean(user);
+    signOutButton.hidden = !user;
+  }, error => {
+    console.error('Could not check Firebase sign-in state:', error);
+  });
+
+  signOutButton.addEventListener('click', async () => {
+    signOutButton.disabled = true;
+    try {
+      await auth.signOut();
+      const navMenu = document.querySelector('.navbar-menu');
+      if (navMenu) {
+        navMenu.classList.remove('active');
+      }
+    } catch (error) {
+      console.error('Firebase sign-out failed:', error);
+      if (typeof App !== 'undefined') {
+        App.showToast('Unable to sign out. Please try again.', 'danger');
+      }
+    } finally {
+      signOutButton.disabled = false;
+    }
+  });
 }
 
 function updateThemeButtonText() {

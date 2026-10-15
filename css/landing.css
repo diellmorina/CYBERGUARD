@@ -55,6 +55,14 @@
   color: var(--accent-primary);
 }
 
+.navbar-menu button.nav-link {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
 .mobile-nav-toggle {
   display: none;
   background: transparent;

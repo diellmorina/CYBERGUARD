@@ -29,8 +29,11 @@
   <main class="auth-main">
     <section class="auth-card" aria-labelledby="auth-title">
       <div class="auth-icon"><i class="fas fa-shield-alt"></i></div>
-      <h1 id="auth-title">Welcome back</h1>
+      <h1 id="auth-title">Welcome </h1>
       <p class="auth-intro">Sign in to your CyberGuard account to continue.</p>
+      <p class="auth-intro">Or</p>
+      <p class="auth-intro">Sign up to create a new CyberGuard account.</p>
+      
 
       <div id="auth-panel">
         <button id="google-sign-in" class="btn btn-secondary auth-google" type="button">
@@ -65,12 +68,12 @@
       <div id="signed-in-panel" class="signed-in-panel" hidden>
         <p>You’re signed in as</p>
         <strong id="signed-in-email"></strong>
-        <a class="btn btn-primary auth-submit" href="dashboard.html">Continue to CyberGuard</a>
+        <a id="signed-in-continue" class="btn btn-primary auth-submit" href="academy.html">Continue to Academy</a>
         <button id="sign-out" class="auth-text-button" type="button">Sign out</button>
       </div>
 
       <p id="auth-status" class="auth-status" role="status" aria-live="polite"></p>
-      <p class="auth-privacy">Your learning progress remains stored locally in this browser. Signing in does not sync it across devices.</p>
+      <p class="auth-privacy">Your learning progress is saved to your account and syncs across your devices.</p>
     </section>
   </main>
 
