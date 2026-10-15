@@ -100,7 +100,54 @@ function initializeAuthPage() {
     return;
   }
 
+  const namePanel = document.getElementById('name-panel');
+  const nameInput = document.getElementById('auth-name');
+  let namePending = false;
+
+  function saveLocalName(user, name) {
+    const storedUid = localStorage.getItem('cyberguard_uid');
+    if (storedUid && storedUid !== user.uid) {
+      localStorage.removeItem('cyberguard_profile');
+      localStorage.removeItem('cyberguard_activities');
+    }
+    localStorage.setItem('cyberguard_uid', user.uid);
+    const profile = Storage.getProfile();
+    profile.displayName = name;
+    localStorage.setItem('cyberguard_profile', JSON.stringify(profile));
+  }
+
+  namePanel.addEventListener('submit', async event => {
+    event.preventDefault();
+    const name = nameInput.value.trim();
+    const user = auth.currentUser;
+    if (!name || !user) return;
+    document.getElementById('name-submit').disabled = true;
+    try {
+      await user.updateProfile({ displayName: name });
+    } catch (error) {
+      console.error('Could not save the display name to the account:', error);
+    }
+    saveLocalName(user, name);
+    namePending = false;
+    location.replace(nextPage);
+  });
+
   auth.onAuthStateChanged(user => {
+    const isNewUser = user && user.metadata.creationTime === user.metadata.lastSignInTime;
+    if (isNewUser && redirectAfterSignIn && !namePending) {
+      namePending = true;
+    }
+    if (user && namePending) {
+      authPanel.hidden = true;
+      signedInPanel.hidden = true;
+      namePanel.hidden = false;
+      title.textContent = 'Welcome to CyberGuard!';
+      intro.textContent = 'Tell us what to call you.';
+      showStatus('', 'info');
+      nameInput.value = user.displayName || '';
+      nameInput.focus();
+      return;
+    }
     if (user && (hasNextPage || redirectAfterSignIn)) {
       location.replace(nextPage);
       return;

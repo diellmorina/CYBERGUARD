@@ -1,7 +1,11 @@
 (function () {
   const style = document.createElement('style');
   style.textContent = 'html { visibility: hidden; }';
-  document.head.appendChild(style);
+  // A previous sign-in on this browser is remembered, so show the page right away
+  // and let Firebase confirm in the background (it redirects if the session ended).
+  if (!localStorage.getItem('cyberguard_uid')) {
+    document.head.appendChild(style);
+  }
 
   function redirectToSignIn() {
     const page = location.pathname.split('/').pop() || 'academy.html';
@@ -31,26 +35,27 @@
         return;
       }
 
+      style.remove();
+
       if (typeof CloudSync === 'undefined') {
-        style.remove();
         return;
       }
 
       CloudSync.init(user);
+      // Pull in the background, once per browser session; later pages rely on pushes.
+      const syncedKey = 'cyberguard_synced_' + user.uid;
+      if (sessionStorage.getItem(syncedKey)) {
+        return;
+      }
       CloudSync.pull()
         .then(changed => {
-          // Reload once so the page renders the freshly synced progress.
-          if (changed && !sessionStorage.getItem('cyberguard_synced_reload')) {
-            sessionStorage.setItem('cyberguard_synced_reload', '1');
+          sessionStorage.setItem(syncedKey, '1');
+          if (changed) {
             location.reload();
-            return;
           }
-          sessionStorage.removeItem('cyberguard_synced_reload');
-          style.remove();
         })
         .catch(error => {
           console.error('Could not sync progress:', error);
-          style.remove();
         });
     }, redirectToSignIn);
   } catch (error) {

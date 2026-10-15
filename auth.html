@@ -65,6 +65,14 @@
         </p>
       </div>
 
+      <form id="name-panel" class="auth-form" hidden>
+        <div class="auth-field">
+          <label for="auth-name">What’s your name?</label>
+          <input id="auth-name" name="name" type="text" autocomplete="name" maxlength="40" placeholder="Your name" required>
+        </div>
+        <button id="name-submit" class="btn btn-primary auth-submit" type="submit">Continue</button>
+      </form>
+
       <div id="signed-in-panel" class="signed-in-panel" hidden>
         <p>You’re signed in as</p>
         <strong id="signed-in-email"></strong>
