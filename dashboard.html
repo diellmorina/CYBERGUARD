@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - CyberGuard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo"><i class="fas fa-shield-alt"></i></div>
+      <div>
+        <h1 class="sidebar-title">CyberGuard</h1>
+        <p class="sidebar-tagline">Stay Secure</p>
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="user-avatar" id="sidebar-avatar"><i class="fas fa-user"></i></div>
+      <div class="user-name" id="sidebar-username">Cyber Learner</div>
+      <div class="user-level" id="sidebar-level">Level 1</div>
+      <div class="user-xp" id="sidebar-xp">0 XP</div>
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+        <li><a href="dashboard.html" class="nav-item active">
+          <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
+          <span>Dashboard</span>
+        </a></li>
+        <li><a href="password-lab.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-lock"></i></span>
+          <span>Password Lab</span>
+        </a></li>
+        <li><a href="link-analyzer.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-link"></i></span>
+          <span>Link Analyzer</span>
+        </a></li>
+        <li><a href="phishing-center.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+          <span>Phishing Center</span>
+        </a></li>
+        <li><a href="academy.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-book"></i></span>
+          <span>Academy</span>
+        </a></li>
+        <li><a href="quiz.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
+          <span>Quizzes</span>
+        </a></li>
+        <li><a href="achievements.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-trophy"></i></span>
+          <span>Achievements</span>
+        </a></li>
+        <li><a href="history.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-history"></i></span>
+          <span>History</span>
+        </a></li>
+        <li><a href="profile.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-user-circle"></i></span>
+          <span>Profile</span>
+        </a></li>
+        <li><a href="settings.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-cog"></i></span>
+          <span>Settings</span>
+        </a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="header-title">Dashboard</h1>
+      <div class="header-actions">
+        <input type="text" class="header-search" placeholder="Search learning materials...">
+        <button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <!-- Welcome Section -->
+      <div class="welcome-section">
+        <h2 class="welcome-title">Welcome back, <span id="welcome-name">Cyber Learner</span>! 👋</h2>
+        <p class="welcome-subtitle">Continue your cybersecurity learning journey</p>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="dashboard-grid">
+        <div class="stat-card">
+          <div class="stat-label">Current Level</div>
+          <div class="stat-value" id="stat-level">1</div>
+          <div class="stat-unit">Security Explorer</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total XP</div>
+          <div class="stat-value" id="stat-xp">0</div>
+          <div class="stat-unit">Experience Points</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Lessons Completed</div>
+          <div class="stat-value" id="stat-lessons">0</div>
+          <div class="stat-unit">out of 15</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Quizzes Completed</div>
+          <div class="stat-value" id="stat-quizzes">0</div>
+          <div class="stat-unit">Total Attempts</div>
+        </div>
+      </div>
+
+      <!-- Progress Section -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Learning Progress</h3>
+        </div>
+        <div class="progress-section">
+          <div class="progress-item">
+            <div class="progress-label">
+              <span>Lessons Completed</span>
+              <span id="progress-percent">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-lessons" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label">
+              <span>Next Level Progress</span>
+              <span id="xp-progress">0 XP</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-xp" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Access Tools -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Quick-Access Security Tools</h3>
+        </div>
+        <div class="tools-grid">
+          <a href="password-lab.html" class="tool-card">
+            <div class="tool-icon">🔐</div>
+            <div class="tool-name">Password Checker</div>
+            <div class="tool-desc">Test password strength</div>
+          </a>
+          <a href="link-analyzer.html" class="tool-card">
+            <div class="tool-icon">🔗</div>
+            <div class="tool-name">Link Analyzer</div>
+            <div class="tool-desc">Analyze URL safety</div>
+          </a>
+          <a href="phishing-center.html" class="tool-card">
+            <div class="tool-icon">🎣</div>
+            <div class="tool-name">Phishing Test</div>
+            <div class="tool-desc">Identify phishing attempts</div>
+          </a>
+          <a href="quiz.html" class="tool-card">
+            <div class="tool-icon">❓</div>
+            <div class="tool-name">Take a Quiz</div>
+            <div class="tool-desc">Test your knowledge</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Recent Activities -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Recent Activities</h3>
+        </div>
+        <div id="activities-list" class="activities-list">
+          <div class="empty-state">
+            <div class="empty-icon">📝</div>
+            <div class="empty-title">No activities yet</div>
+            <div class="empty-description">Start learning to see your activities here</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement Badges -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Recent Achievements</h3>
+          <a href="achievements.html" class="btn btn-small btn-secondary">View All</a>
+        </div>
+        <div id="achievements-grid" class="achievements-preview">
+          <div class="empty-state" style="padding: 1.5rem;">
+            <div class="empty-icon">🏆</div>
+            <div class="empty-title">Unlock achievements</div>
+            <div class="empty-description">Complete lessons and quizzes to earn badges</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data-lessons.js"></script>
+  <script src="js/data-quizzes.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

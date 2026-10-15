@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements - CyberGuard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-header"><div class="sidebar-logo"><i class="fas fa-shield-alt"></i></div><div><h1 class="sidebar-title">CyberGuard</h1><p class="sidebar-tagline">Stay Secure</p></div></div>
+    <div class="user-card"><div class="user-avatar" id="sidebar-avatar"><i class="fas fa-user"></i></div><div class="user-name" id="sidebar-username">Cyber Learner</div><div class="user-level" id="sidebar-level">Level 1</div><div class="user-xp" id="sidebar-xp">0 XP</div></div>
+    <nav><ul class="nav-list">
+      <li><a href="dashboard.html" class="nav-item"><span class="nav-icon"><i class="fas fa-chart-bar"></i></span><span>Dashboard</span></a></li>
+      <li><a href="password-lab.html" class="nav-item"><span class="nav-icon"><i class="fas fa-lock"></i></span><span>Password Lab</span></a></li>
+      <li><a href="link-analyzer.html" class="nav-item"><span class="nav-icon"><i class="fas fa-link"></i></span><span>Link Analyzer</span></a></li>
+      <li><a href="phishing-center.html" class="nav-item"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>Phishing Center</span></a></li>
+      <li><a href="academy.html" class="nav-item"><span class="nav-icon"><i class="fas fa-book"></i></span><span>Academy</span></a></li>
+      <li><a href="quiz.html" class="nav-item"><span class="nav-icon"><i class="fas fa-question-circle"></i></span><span>Quizzes</span></a></li>
+      <li><a href="achievements.html" class="nav-item active"><span class="nav-icon"><i class="fas fa-trophy"></i></span><span>Achievements</span></a></li>
+      <li><a href="history.html" class="nav-item"><span class="nav-icon"><i class="fas fa-history"></i></span><span>History</span></a></li>
+      <li><a href="profile.html" class="nav-item"><span class="nav-icon"><i class="fas fa-user-circle"></i></span><span>Profile</span></a></li>
+      <li><a href="settings.html" class="nav-item"><span class="nav-icon"><i class="fas fa-cog"></i></span><span>Settings</span></a></li>
+    </ul></nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="header">
+      <h1 class="header-title">Achievements</h1>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="card">
+        <div class="card-header"><h3 class="card-title">Your Achievements</h3></div>
+        <div id="achievements-grid" class="grid-4" style="gap: 1.5rem;">
+          <!-- Achievements will be populated here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const profile = Storage.getProfile();
+      const achievements = {
+        'first-steps': {name: 'First Steps', icon: '👣', desc: 'Complete your first lesson'},
+        'quiz-starter': {name: 'Quiz Starter', icon: '❓', desc: 'Complete your first quiz'},
+        'perfect-score': {name: 'Perfect Score', icon: '🌟', desc: 'Get 100% on a quiz'},
+        'learning-streak': {name: 'Learning Streak', icon: '🔥', desc: 'Learn on 3 consecutive days'},
+        'password-pro': {name: 'Password Pro', icon: '🔐', desc: 'Complete password security lesson'},
+        'phishing-detective': {name: 'Phishing Detective', icon: '🎣', desc: 'Complete all phishing scenarios'},
+        'cyber-guardian': {name: 'Cyber Guardian', icon: '🛡️', desc: 'Complete all core lessons'}
+      };
+
+      const grid = document.getElementById('achievements-grid');
+      grid.innerHTML = Object.entries(achievements).map(([id, ach]) => {
+        const unlocked = profile.achievements.includes(id);
+        return `
+          <div class="card" style="text-align: center; ${!unlocked ? 'opacity: 0.5;' : ''}">
+            <div style="font-size: 3rem; margin: 1rem 0;">${ach.icon}</div>
+            <h4>${ach.name}</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">${ach.desc}</p>
+            ${unlocked ? '<span style="color: var(--success-color); font-weight: 600;">✓ Unlocked</span>' : '<span style="color: var(--text-secondary);">Locked</span>'}
+          </div>
+        `;
+      }).join('');
+
+      // Update sidebar
+      const avatars = ['👤', '🔐', '🛡️', '👨‍💻', '👩‍💻'];
+      const idx = parseInt(profile.avatar.split('-')[1]) % avatars.length;
+      document.getElementById('sidebar-avatar').textContent = avatars[idx];
+      document.getElementById('sidebar-username').textContent = profile.displayName;
+      document.getElementById('sidebar-level').textContent = `Level ${profile.level}`;
+      document.getElementById('sidebar-xp').textContent = `${profile.totalXP} XP`;
+    });
+  </script>
+</body>
+</html>

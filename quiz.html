@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizzes - CyberGuard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/quiz.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo"><i class="fas fa-shield-alt"></i></div>
+      <div>
+        <h1 class="sidebar-title">CyberGuard</h1>
+        <p class="sidebar-tagline">Stay Secure</p>
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="user-avatar" id="sidebar-avatar"><i class="fas fa-user"></i></div>
+      <div class="user-name" id="sidebar-username">Cyber Learner</div>
+      <div class="user-level" id="sidebar-level">Level 1</div>
+      <div class="user-xp" id="sidebar-xp">0 XP</div>
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+        <li><a href="dashboard.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
+          <span>Dashboard</span>
+        </a></li>
+        <li><a href="password-lab.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-lock"></i></span>
+          <span>Password Lab</span>
+        </a></li>
+        <li><a href="link-analyzer.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-link"></i></span>
+          <span>Link Analyzer</span>
+        </a></li>
+        <li><a href="phishing-center.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+          <span>Phishing Center</span>
+        </a></li>
+        <li><a href="academy.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-book"></i></span>
+          <span>Academy</span>
+        </a></li>
+        <li><a href="quiz.html" class="nav-item active">
+          <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
+          <span>Quizzes</span>
+        </a></li>
+        <li><a href="achievements.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-trophy"></i></span>
+          <span>Achievements</span>
+        </a></li>
+        <li><a href="history.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-history"></i></span>
+          <span>History</span>
+        </a></li>
+        <li><a href="profile.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-user-circle"></i></span>
+          <span>Profile</span>
+        </a></li>
+        <li><a href="settings.html" class="nav-item">
+          <span class="nav-icon"><i class="fas fa-cog"></i></span>
+          <span>Settings</span>
+        </a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="header">
+      <h1 class="header-title">Cybersecurity Quizzes</h1>
+      <div class="header-actions">
+        <input type="text" class="header-search" placeholder="Search...">
+        <button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <!-- Quiz Selection View -->
+      <div id="quiz-selection" class="quiz-selection">
+        <div class="selection-header">
+          <h2>Available Quizzes</h2>
+          <p>Choose a quiz to begin testing your cybersecurity knowledge</p>
+        </div>
+
+        <div id="quizzes-grid" class="quizzes-grid">
+          <!-- Quiz cards will be populated here -->
+        </div>
+      </div>
+
+      <!-- Quiz Taking View -->
+      <div id="quiz-container" class="quiz-container hidden">
+        <div class="quiz-header">
+          <h2 id="quiz-title">Quiz Title</h2>
+          <div class="quiz-progress">
+            <span id="question-counter">1 / 5</span>
+            <div class="progress-bar">
+              <div class="progress-fill" id="quiz-progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-container">
+          <h3 id="question-text">Question text</h3>
+          <div id="options-list" class="options-list">
+            <!-- Options will be populated here -->
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button id="prev-btn" class="btn btn-secondary">← Previous</button>
+          <button id="next-btn" class="btn btn-primary">Next →</button>
+        </div>
+      </div>
+
+      <!-- Results View -->
+      <div id="results-container" class="results-container hidden">
+        <div class="results-card">
+          <div class="results-header">
+            <h2>Quiz Complete!</h2>
+            <div class="score-display">
+              <div class="final-score" id="final-score">80%</div>
+              <div class="score-label">Your Score</div>
+            </div>
+          </div>
+
+          <div class="results-details">
+            <div class="detail-row">
+              <span>Questions Answered:</span>
+              <span id="result-questions">5 / 5</span>
+            </div>
+            <div class="detail-row">
+              <span>Correct Answers:</span>
+              <span id="result-correct">4</span>
+            </div>
+            <div class="detail-row">
+              <span>XP Earned:</span>
+              <span id="result-xp" class="xp-earned">+30 XP</span>
+            </div>
+          </div>
+
+          <div id="bonus-xp" class="bonus-section hidden">
+            <span class="bonus-badge">🌟 BONUS</span>
+            <span id="bonus-text">+15 XP for scoring 80%+</span>
+          </div>
+
+          <div class="results-feedback" id="results-feedback">
+            <!-- Feedback will be populated here -->
+          </div>
+
+          <div class="results-actions">
+            <button id="review-btn" class="btn btn-secondary">Review Answers</button>
+            <button id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+            <a href="dashboard.html" class="btn btn-secondary">Back to Dashboard</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review View -->
+      <div id="review-container" class="review-container hidden">
+        <div class="review-header">
+          <h2>Review Your Answers</h2>
+          <button id="close-review" class="btn btn-small btn-secondary">Close Review</button>
+        </div>
+
+        <div id="review-list" class="review-list">
+          <!-- Review items will be populated here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data-quizzes.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

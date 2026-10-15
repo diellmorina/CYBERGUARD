@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberGuard - Advanced Cybersecurity Education Platform</title>
+  <meta name="description" content="Learn cybersecurity with CyberGuard. Master password security, phishing awareness, link analysis, and more.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="theme-color" content="#080B10">
+</head>
+<body class="landing-page">
+  <!-- Navigation -->
+  <nav class="landing-navbar">
+    <div class="container navbar-content">
+      <div class="navbar-brand">
+        <div class="navbar-logo"><i class="fas fa-shield-alt"></i></div>
+        <span class="navbar-title">CyberGuard</span>
+      </div>
+      <ul class="navbar-menu">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="auth.html" class="nav-link">Sign In</a></li>
+        <li><button id="landing-theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button></li>
+      </ul>
+      <button id="mobile-nav-toggle" class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Stay Aware. Stay Secure.</h1>
+        <p class="hero-subtitle">Master cybersecurity skills with interactive tools, real-world scenarios, and expert guidance.</p>
+        <div class="hero-buttons">
+          <a href="dashboard.html" class="btn btn-primary btn-large">Explore Security Tools</a>
+          <a href="academy.html" class="btn btn-secondary btn-large">Start Learning</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="dashboard-preview">
+          <div class="preview-card">
+            <div class="preview-header">Dashboard</div>
+            <div class="preview-bar" style="width: 65%;"></div>
+            <div class="preview-bar" style="width: 80%;"></div>
+            <div class="preview-bar" style="width: 45%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Comprehensive Security Tools</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔐</div>
+          <h3>Password Security Lab</h3>
+          <p>Create strong passwords and understand password security best practices with our advanced strength checker and secure generator.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔗</div>
+          <h3>Link Safety Analyzer</h3>
+          <p>Analyze URLs for suspicious indicators, phishing attempts, and malicious characteristics with detailed risk assessment.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎣</div>
+          <h3>Phishing Awareness</h3>
+          <p>Test your skills with realistic phishing scenarios. Learn to identify red flags and protect yourself from social engineering attacks.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>Cyber Academy</h3>
+          <p>Learn from comprehensive lessons covering 15+ cybersecurity topics with practical examples and knowledge checks.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧪</div>
+          <h3>Interactive Quizzes</h3>
+          <p>Test your knowledge with 50+ questions across multiple difficulty levels. Earn XP and track your progress.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Achievements & Gamification</h3>
+          <p>Unlock badges, climb levels, and compete on leaderboards as you progress through your cybersecurity journey.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How CyberGuard Works</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Learn</h3>
+          <p>Start with foundational lessons covering cybersecurity principles, threats, and best practices.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Practice</h3>
+          <p>Use interactive tools like the password lab and link analyzer to apply your knowledge in real scenarios.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Test</h3>
+          <p>Complete quizzes to evaluate your understanding and identify areas for improvement.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Achieve</h3>
+          <p>Unlock achievements and level up as you progress, staying motivated on your security journey.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Quiz Questions</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">15</div>
+          <div class="stat-label">Learning Topics</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Difficulty Levels</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Local & Private</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is CyberGuard really free?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! CyberGuard is completely free and always will be. It's designed as an educational tool to help everyone learn cybersecurity.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is my data collected or stored online?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. All your data is stored locally in your browser using localStorage. Nothing is sent to our servers. You have complete privacy and control.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I use CyberGuard offline?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, once the page loads, CyberGuard works completely offline. No internet connection needed after the initial load.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is this a real security scanner?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>CyberGuard is an educational platform, not a production security tool. It teaches concepts and uses client-side analysis. For real security assessment, use professional tools.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do I export my progress?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Go to Settings → Export Progress to download your data as JSON. You can import it back on any device or browser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>CyberGuard</h3>
+          <p>An advanced cybersecurity education platform for everyone.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="academy.html">Academy</a></li>
+            <li><a href="quiz.html">Quizzes</a></li>
+            <li><a href="achievements.html">Achievements</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More</h4>
+          <ul class="footer-links">
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 CyberGuard. Educational platform. Not for production use.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/landing.js"></script>
+</body>
+</html>

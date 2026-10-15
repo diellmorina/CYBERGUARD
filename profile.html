@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - CyberGuard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-header"><div class="sidebar-logo"><i class="fas fa-shield-alt"></i></div><div><h1 class="sidebar-title">CyberGuard</h1><p class="sidebar-tagline">Stay Secure</p></div></div>
+    <div class="user-card"><div class="user-avatar" id="sidebar-avatar"><i class="fas fa-user"></i></div><div class="user-name" id="sidebar-username">Cyber Learner</div><div class="user-level" id="sidebar-level">Level 1</div><div class="user-xp" id="sidebar-xp">0 XP</div></div>
+    <nav><ul class="nav-list">
+      <li><a href="dashboard.html" class="nav-item"><span class="nav-icon"><i class="fas fa-chart-bar"></i></span><span>Dashboard</span></a></li>
+      <li><a href="password-lab.html" class="nav-item"><span class="nav-icon"><i class="fas fa-lock"></i></span><span>Password Lab</span></a></li>
+      <li><a href="link-analyzer.html" class="nav-item"><span class="nav-icon"><i class="fas fa-link"></i></span><span>Link Analyzer</span></a></li>
+      <li><a href="phishing-center.html" class="nav-item"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>Phishing Center</span></a></li>
+      <li><a href="academy.html" class="nav-item"><span class="nav-icon"><i class="fas fa-book"></i></span><span>Academy</span></a></li>
+      <li><a href="quiz.html" class="nav-item"><span class="nav-icon"><i class="fas fa-question-circle"></i></span><span>Quizzes</span></a></li>
+      <li><a href="achievements.html" class="nav-item"><span class="nav-icon"><i class="fas fa-trophy"></i></span><span>Achievements</span></a></li>
+      <li><a href="history.html" class="nav-item"><span class="nav-icon"><i class="fas fa-history"></i></span><span>History</span></a></li>
+      <li><a href="profile.html" class="nav-item active"><span class="nav-icon"><i class="fas fa-user-circle"></i></span><span>Profile</span></a></li>
+      <li><a href="settings.html" class="nav-item"><span class="nav-icon"><i class="fas fa-cog"></i></span><span>Settings</span></a></li>
+    </ul></nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="header">
+      <h1 class="header-title">Your Profile</h1>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Profile Information</h3></div>
+          <div style="text-align: center; padding: 1.5rem 0;">
+            <div id="profile-avatar" style="font-size: 4rem; margin-bottom: 1rem;">👤</div>
+            <div id="profile-name" style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Cyber Learner</div>
+            <div id="profile-level" style="color: var(--accent-primary); font-weight: 500;">Level 1 | 0 XP</div>
+          </div>
+          <form id="profile-form" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="form-group">
+              <label>Display Name:</label>
+              <input type="text" id="display-name" placeholder="Your name">
+            </div>
+            <button type="submit" class="btn btn-primary">Save Profile</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Statistics</h3></div>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md);">
+              <div style="color: var(--text-secondary); font-size: 0.85rem;">Lessons Completed</div>
+              <div id="stat-lessons-count" style="font-size: 2rem; font-weight: bold; color: var(--accent-primary);">0</div>
+            </div>
+            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md);">
+              <div style="color: var(--text-secondary); font-size: 0.85rem;">Quizzes Completed</div>
+              <div id="stat-quizzes-count" style="font-size: 2rem; font-weight: bold; color: var(--accent-primary);">0</div>
+            </div>
+            <div style="padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md);">
+              <div style="color: var(--text-secondary); font-size: 0.85rem;">Achievements Unlocked</div>
+              <div id="stat-achievements-count" style="font-size: 2rem; font-weight: bold; color: var(--accent-primary);">0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3 class="card-title">Account Info</h3></div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div style="display: flex; justify-content: space-between; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md);">
+            <span>Profile Type:</span>
+            <strong>Local Demo (Browser Only)</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md);">
+            <span>Data Location:</span>
+            <strong>Your Device (localStorage)</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md);">
+            <span>Account Created:</span>
+            <strong id="created-date">-</strong>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(20, 184, 166, 0.05)); border-left: 3px solid var(--accent-primary); border-radius: var(--radius-md);">
+          <strong>📌 Note:</strong> This is a local demo profile stored only in your browser. Data does not sync across devices.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const profile = Storage.getProfile();
+      const avatars = ['👤', '🔐', '🛡️', '👨‍💻', '👩‍💻'];
+      const idx = parseInt(profile.avatar.split('-')[1]) % avatars.length;
+
+      // Update profile display
+      document.getElementById('profile-avatar').textContent = avatars[idx];
+      document.getElementById('profile-name').textContent = profile.displayName;
+      document.getElementById('profile-level').textContent = `Level ${profile.level} | ${profile.totalXP} XP`;
+      document.getElementById('display-name').value = profile.displayName;
+
+      // Update stats
+      document.getElementById('stat-lessons-count').textContent = profile.completedLessons.length;
+      document.getElementById('stat-quizzes-count').textContent = profile.quizAttempts.length;
+      document.getElementById('stat-achievements-count').textContent = profile.achievements.length;
+
+      // Update created date
+      const created = new Date(profile.createdAt);
+      document.getElementById('created-date').textContent = created.toLocaleDateString();
+
+      // Handle profile form
+      document.getElementById('profile-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newName = document.getElementById('display-name').value;
+        if (newName.trim()) {
+          Storage.saveSetting('displayName', newName);
+          profile.displayName = newName;
+          Storage.saveProfile(profile);
+          App.showToast('Profile updated!', 'success');
+          location.reload();
+        }
+      });
+
+      // Update sidebar
+      document.getElementById('sidebar-avatar').textContent = avatars[idx];
+      document.getElementById('sidebar-username').textContent = profile.displayName;
+      document.getElementById('sidebar-level').textContent = `Level ${profile.level}`;
+      document.getElementById('sidebar-xp').textContent = `${profile.totalXP} XP`;
+    });
+  </script>
+</body>
+</html>
