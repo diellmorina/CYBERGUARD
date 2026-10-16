@@ -10,9 +10,15 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%2322C55E' width='192' height='192'/><text x='96' y='120' font-size='100' text-anchor='middle' fill='%23080B10' font-weight='bold'>🛡️</text></svg>",
+      "src": "assets/icons/cyberguard-icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/cyberguard-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     }
   ],
