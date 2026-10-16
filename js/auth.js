@@ -16,7 +16,8 @@ function initializeAuthPage() {
   const signedInEmail = document.getElementById('signed-in-email');
   const status = document.getElementById('auth-status');
   const signOutButton = document.getElementById('sign-out');
-  const authButtons = [googleButton, submitButton];
+  const forgotButton = document.getElementById('forgot-password');
+  const authButtons = [googleButton, submitButton, forgotButton];
   const requiredConfig = ['apiKey', 'authDomain', 'projectId', 'appId'];
 
   let auth = null;
@@ -43,6 +44,7 @@ function initializeAuthPage() {
     submitButton.textContent = signUp ? 'Create Account' : 'Sign In';
     switchPrompt.textContent = signUp ? 'Already have an account?' : 'Don’t have an account?';
     switchButton.textContent = signUp ? 'Sign in' : 'Create one';
+    forgotButton.hidden = signUp;
     confirmField.hidden = !signUp;
     confirmInput.required = signUp;
     passwordInput.autocomplete = signUp ? 'new-password' : 'current-password';
@@ -164,6 +166,29 @@ function initializeAuthPage() {
     }
   }, error => {
     showAuthError(error);
+  });
+
+  forgotButton.addEventListener('click', async () => {
+    const emailInput = document.getElementById('auth-email');
+    const email = emailInput.value.trim();
+    if (!email || !emailInput.checkValidity()) {
+      showStatus('Enter your email address above, then click “Forgot password?”.', 'error');
+      emailInput.focus();
+      return;
+    }
+    forgotButton.disabled = true;
+    try {
+      await auth.sendPasswordResetEmail(email);
+      showStatus('If an account exists for this email, a password reset link has been sent. Check your inbox and spam folder.', 'success');
+    } catch (error) {
+      if (error.code === 'auth/user-not-found') {
+        showStatus('If an account exists for this email, a password reset link has been sent. Check your inbox and spam folder.', 'success');
+      } else {
+        showAuthError(error);
+      }
+    } finally {
+      forgotButton.disabled = false;
+    }
   });
 
   form.addEventListener('submit', async event => {
