@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/cyberguard-icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/cyberguard-icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CyberGuard">
   <title>CyberGuard - Advanced Cybersecurity Education Platform</title>
   <meta name="description" content="Learn cybersecurity with CyberGuard. Master password security, phishing awareness, link analysis, and more.">
   <link rel="stylesheet" href="css/style.css">
@@ -41,6 +45,10 @@
         <p class="hero-subtitle">Master cybersecurity skills with interactive tools, real-world scenarios, and expert guidance.</p>
         <div class="hero-buttons">
           <a href="auth.html?next=academy.html" class="btn btn-primary btn-large">Start Learning</a>
+          <button id="pwa-install-button" class="btn btn-secondary btn-large" type="button">
+            <i class="fas fa-arrow-down-to-bracket" aria-hidden="true"></i>
+            Add to Home Screen
+          </button>
         </div>
       </div>
       <div class="hero-visual">
@@ -55,6 +63,19 @@
       </div>
     </div>
   </section>
+
+  <dialog id="pwa-install-dialog" class="install-dialog" aria-labelledby="pwa-install-title">
+    <div class="install-dialog-header">
+      <span class="install-dialog-icon"><i class="fas fa-mobile-screen-button" aria-hidden="true"></i></span>
+      <button id="pwa-install-close" class="install-dialog-close" type="button" aria-label="Close install instructions">
+        <i class="fas fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <h2 id="pwa-install-title">Add CyberGuard to your Home Screen</h2>
+    <p id="pwa-install-description"></p>
+    <ol id="pwa-install-steps" class="install-steps"></ol>
+    <p id="pwa-install-note" class="install-dialog-note"></p>
+  </dialog>
 
   <!-- Features Section -->
   <section id="features" class="features">

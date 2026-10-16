@@ -53,6 +53,8 @@ function setupLandingPage() {
     }
   });
 
+  setupPwaInstall();
+
   // Theme toggle
   const themeToggle = document.getElementById('landing-theme-toggle');
   if (themeToggle) {
@@ -67,6 +69,108 @@ function setupLandingPage() {
       updateThemeButtonIcon();
     });
   }
+}
+
+function setupPwaInstall() {
+  const installButton = document.getElementById('pwa-install-button');
+  const installDialog = document.getElementById('pwa-install-dialog');
+  const closeButton = document.getElementById('pwa-install-close');
+  const installTitle = document.getElementById('pwa-install-title');
+  const installDescription = document.getElementById('pwa-install-description');
+  const installSteps = document.getElementById('pwa-install-steps');
+  const installNote = document.getElementById('pwa-install-note');
+
+  if (!installButton || !installDialog || !closeButton) {
+    return;
+  }
+
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isInstalled = window.matchMedia('(display-mode: standalone)').matches
+    || navigator.standalone === true;
+  let deferredInstallPrompt = null;
+
+  if (isInstalled) {
+    installButton.hidden = true;
+    return;
+  }
+
+  function showInstallInstructions() {
+    if (isIOS) {
+      installTitle.textContent = 'Add CyberGuard to your iPhone';
+      installDescription.textContent = 'In Safari, use the Share menu to save CyberGuard to your Home Screen:';
+      installSteps.innerHTML = `
+        <li><span>1</span>Open this page in Safari.</li>
+        <li><span>2</span>Tap Share <i class="fas fa-arrow-up-from-bracket" aria-hidden="true"></i>.</li>
+        <li><span>3</span>Scroll down and tap “Add to Home Screen”.</li>
+        <li><span>4</span>Tap “Add” to finish.</li>
+      `;
+      installNote.textContent = 'The site must be opened from its secure HTTPS address. If you do not see “Add to Home Screen”, open the page directly in Safari.';
+    } else {
+      installTitle.textContent = 'Install CyberGuard';
+      installDescription.textContent = 'Use your browser menu to install CyberGuard or add it to your Home Screen.';
+      installSteps.innerHTML = `
+        <li><span>1</span>Open the browser menu.</li>
+        <li><span>2</span>Select “Install app” or “Add to Home Screen”.</li>
+        <li><span>3</span>Confirm the installation.</li>
+      `;
+      installNote.textContent = 'Installation is available when CyberGuard is served from a secure HTTPS address.';
+    }
+
+    if (typeof installDialog.showModal === 'function') {
+      installDialog.showModal();
+    } else {
+      installDialog.setAttribute('open', '');
+    }
+  }
+
+  function closeInstallDialog() {
+    if (typeof installDialog.close === 'function') {
+      installDialog.close();
+    } else {
+      installDialog.removeAttribute('open');
+    }
+  }
+
+  installButton.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) {
+      showInstallInstructions();
+      return;
+    }
+
+    try {
+      await deferredInstallPrompt.prompt();
+      const choice = await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      if (choice.outcome === 'accepted') {
+        installButton.hidden = true;
+      }
+    } catch (error) {
+      console.error('Could not open the app installation prompt:', error);
+      deferredInstallPrompt = null;
+      showInstallInstructions();
+    }
+  });
+
+  closeButton.addEventListener('click', () => {
+    closeInstallDialog();
+  });
+
+  installDialog.addEventListener('click', event => {
+    if (event.target === installDialog) {
+      closeInstallDialog();
+    }
+  });
+
+  window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+  });
+
+  window.addEventListener('appinstalled', () => {
+    installButton.hidden = true;
+    deferredInstallPrompt = null;
+  });
 }
 
 function setupLandingAuth() {
