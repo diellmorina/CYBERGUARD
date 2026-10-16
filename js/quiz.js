@@ -20,16 +20,16 @@ function renderQuizSelection() {
   const grid = document.getElementById('quizzes-grid');
   grid.innerHTML = QUIZZES.map(quiz => `
     <div class="quiz-card" onclick="startQuiz('${quiz.id}')">
-      <div class="quiz-card-icon">❓</div>
+      <div class="quiz-card-icon icon-tile"><i class="fas fa-circle-question" aria-hidden="true"></i></div>
       <div class="quiz-card-title">${quiz.title}</div>
       <div class="quiz-card-desc">${quiz.description}</div>
       <div class="quiz-card-meta">
         <div class="quiz-meta-item">
-          <span>📝</span>
+          <i class="fas fa-list-check" aria-hidden="true"></i>
           <span>${quiz.questions.length} Questions</span>
         </div>
         <div class="quiz-meta-item">
-          <span>⭐</span>
+          <i class="fas fa-star" aria-hidden="true"></i>
           <span>${quiz.difficulty}</span>
         </div>
       </div>
@@ -207,18 +207,18 @@ function showReview() {
         <div class="review-question">${index + 1}. ${question.text}</div>
         ${userAnswer ? `
           <div class="review-answer user-answer">
-            <span class="review-icon">${isCorrect ? '✓' : '✗'}</span>
+            <i class="review-icon fas ${isCorrect ? 'fa-circle-check' : 'fa-circle-xmark'}" aria-hidden="true"></i>
             <span>Your answer: ${userAnswer.text}</span>
           </div>
         ` : `
           <div class="review-answer user-answer">
-            <span class="review-icon">⊝</span>
+            <i class="review-icon fas fa-circle-minus" aria-hidden="true"></i>
             <span>Not answered</span>
           </div>
         `}
         ${!isCorrect ? `
           <div class="review-answer correct-answer">
-            <span class="review-icon">✓</span>
+            <i class="review-icon fas fa-circle-check" aria-hidden="true"></i>
             <span>Correct answer: ${correctAnswer.text}</span>
           </div>
         ` : ''}
@@ -232,10 +232,10 @@ function showReview() {
 
 function updateSidebarInfo() {
   const profile = quizState.profile;
-  const avatars = ['👤', '🔐', '🛡️', '👨‍💻', '👩‍💻'];
+  const avatars = ['fa-user', 'fa-lock', 'fa-shield-halved', 'fa-user-tie', 'fa-user-ninja'];
   const avatarIndex = parseInt(profile.avatar.split('-')[1]) % avatars.length;
 
-  document.getElementById('sidebar-avatar').textContent = avatars[avatarIndex] || '👤';
+  document.getElementById('sidebar-avatar').innerHTML = `<i class="fas ${avatars[avatarIndex] || 'fa-user'}" aria-hidden="true"></i>`;
   document.getElementById('sidebar-username').textContent = profile.displayName;
   document.getElementById('sidebar-level').textContent = `Level ${profile.level}`;
   document.getElementById('sidebar-xp').textContent = `${profile.totalXP} XP`;

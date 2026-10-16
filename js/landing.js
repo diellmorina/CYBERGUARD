@@ -57,14 +57,14 @@ function setupLandingPage() {
   const themeToggle = document.getElementById('landing-theme-toggle');
   if (themeToggle) {
     // Update button text based on current theme
-    updateThemeButtonText();
+    updateThemeButtonIcon();
     
     themeToggle.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
       Storage.saveSetting('theme', newTheme);
-      updateThemeButtonText();
+      updateThemeButtonIcon();
     });
   }
 }
@@ -124,10 +124,12 @@ function setupLandingAuth() {
   });
 }
 
-function updateThemeButtonText() {
+function updateThemeButtonIcon() {
   const themeToggle = document.getElementById('landing-theme-toggle');
   if (themeToggle) {
     const currentTheme = document.documentElement.getAttribute('data-theme');
-    themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+    const icon = currentTheme === 'dark' ? 'fa-sun' : 'fa-moon';
+    themeToggle.innerHTML = `<i class="fas ${icon}" aria-hidden="true"></i>`;
+    themeToggle.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
   }
 }

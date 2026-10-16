@@ -31,10 +31,10 @@ function initDashboard() {
 
 function updateSidebarUserInfo() {
   const profile = dashboardState.profile;
-  const avatars = ['👤', '🔐', '🛡️', '👨‍💻', '👩‍💻'];
+  const avatars = ['fa-user', 'fa-lock', 'fa-shield-halved', 'fa-user-tie', 'fa-user-ninja'];
   const avatarIndex = parseInt(profile.avatar.split('-')[1]) % avatars.length;
   
-  document.getElementById('sidebar-avatar').textContent = avatars[avatarIndex] || '👤';
+  document.getElementById('sidebar-avatar').innerHTML = `<i class="fas ${avatars[avatarIndex] || 'fa-user'}" aria-hidden="true"></i>`;
   document.getElementById('sidebar-username').textContent = profile.displayName;
   document.getElementById('sidebar-level').textContent = `Level ${profile.level}`;
   document.getElementById('sidebar-xp').textContent = `${profile.totalXP} XP`;
@@ -80,7 +80,7 @@ function renderActivities() {
   if (activities.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-icon">📝</div>
+        <div class="empty-icon icon-tile"><i class="fas fa-clipboard-list" aria-hidden="true"></i></div>
         <div class="empty-title">No activities yet</div>
         <div class="empty-description">Start learning to see your activities here</div>
       </div>
@@ -91,10 +91,10 @@ function renderActivities() {
   const recentActivities = activities.slice(-5).reverse();
   container.innerHTML = recentActivities.map(activity => {
     const typeLabels = {
-      'lesson-completed': '📚 Lesson Completed',
-      'quiz-completed': '❓ Quiz Completed',
-      'achievement-unlocked': '🏆 Achievement Unlocked',
-      'level-up': '⬆️ Level Up!'
+      'lesson-completed': '<i class="fas fa-book-open" aria-hidden="true"></i> Lesson Completed',
+      'quiz-completed': '<i class="fas fa-circle-question" aria-hidden="true"></i> Quiz Completed',
+      'achievement-unlocked': '<i class="fas fa-trophy" aria-hidden="true"></i> Achievement Unlocked',
+      'level-up': '<i class="fas fa-arrow-up" aria-hidden="true"></i> Level Up!'
     };
     
     const label = typeLabels[activity.type] || activity.type;
@@ -123,7 +123,7 @@ function renderAchievements() {
   if (unlocked.length === 0) {
     container.innerHTML = `
       <div class="empty-state" style="grid-column: 1 / -1; padding: 1.5rem;">
-        <div class="empty-icon">🏆</div>
+        <div class="empty-icon icon-tile"><i class="fas fa-trophy" aria-hidden="true"></i></div>
         <div class="empty-title">Unlock achievements</div>
         <div class="empty-description">Complete lessons and quizzes to earn badges</div>
       </div>
@@ -137,7 +137,7 @@ function renderAchievements() {
     
     return `
       <div class="achievement-badge">
-        <div class="achievement-icon">${ach.icon}</div>
+        <div class="achievement-icon icon-tile"><i class="fas ${ach.icon}" aria-hidden="true"></i></div>
         <div class="achievement-title">${ach.name}</div>
       </div>
     `;
@@ -163,62 +163,62 @@ function getAchievementDefinitions() {
   return {
     'first-steps': {
       name: 'First Steps',
-      icon: '👣',
+      icon: 'fa-shoe-prints',
       description: 'Complete your first lesson'
     },
     'quiz-starter': {
       name: 'Quiz Starter',
-      icon: '❓',
+      icon: 'fa-circle-question',
       description: 'Complete your first quiz'
     },
     'perfect-score': {
       name: 'Perfect Score',
-      icon: '🌟',
+      icon: 'fa-star',
       description: 'Get 100% on a quiz'
     },
     'learning-streak': {
       name: 'Learning Streak',
-      icon: '🔥',
+      icon: 'fa-fire',
       description: 'Learn on 3 consecutive days'
     },
     'password-pro': {
       name: 'Password Pro',
-      icon: '🔐',
+      icon: 'fa-lock',
       description: 'Complete password security lesson'
     },
     'phishing-detective': {
       name: 'Phishing Detective',
-      icon: '🎣',
+      icon: 'fa-magnifying-glass',
       description: 'Complete all phishing scenarios'
     },
     'cyber-guardian': {
       name: 'Cyber Guardian',
-      icon: '🛡️',
+      icon: 'fa-shield-halved',
       description: 'Complete all core lessons'
     },
     'level-2': {
       name: 'Security Explorer',
-      icon: '🔍',
+      icon: 'fa-magnifying-glass',
       description: 'Reach level 2'
     },
     'level-3': {
       name: 'Cyber Learner',
-      icon: '📚',
+      icon: 'fa-book-open',
       description: 'Reach level 3'
     },
     'level-4': {
       name: 'Security Analyst',
-      icon: '👨‍💻',
+      icon: 'fa-user-gear',
       description: 'Reach level 4'
     },
     'level-5': {
       name: 'Cyber Guardian',
-      icon: '🛡️',
+      icon: 'fa-shield-halved',
       description: 'Reach level 5'
     },
     'level-6': {
       name: 'Security Expert',
-      icon: '👑',
+      icon: 'fa-crown',
       description: 'Reach level 6'
     }
   };

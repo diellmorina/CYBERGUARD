@@ -43,8 +43,7 @@
 }
 
 .quiz-card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 .quiz-card-title {
@@ -367,6 +366,18 @@
 
 .review-icon {
   font-size: 1.2rem;
+}
+
+.review-answer.user-answer .fa-circle-xmark {
+  color: var(--danger-color);
+}
+
+.review-answer.correct-answer .review-icon {
+  color: var(--success-color);
+}
+
+.review-answer.user-answer .fa-circle-minus {
+  color: var(--text-secondary);
 }
 
 .review-answer.user-answer {

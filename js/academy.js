@@ -21,7 +21,7 @@ function renderLessons() {
     return `
       <div class="lesson-card ${isCompleted ? 'completed' : ''}" onclick="openLesson('${lesson.id}')">
         <div class="lesson-card-header">
-          <div class="lesson-icon">📖</div>
+          <div class="lesson-icon icon-tile"><i class="fas fa-book-open" aria-hidden="true"></i></div>
           <span class="lesson-status ${isCompleted ? 'completed' : 'locked'}">
             ${isCompleted ? '✓ Complete' : 'Available'}
           </span>
@@ -29,7 +29,7 @@ function renderLessons() {
         <h3 class="lesson-card-title">${lesson.title}</h3>
         <p class="lesson-card-desc">${lesson.description}</p>
         <div class="lesson-card-meta">
-          <span class="lesson-duration">⏱️ ${lesson.duration}</span>
+          <span class="lesson-duration"><i class="fas fa-clock" aria-hidden="true"></i> ${lesson.duration}</span>
           <span class="lesson-difficulty">${lesson.difficulty}</span>
         </div>
       </div>
@@ -50,7 +50,7 @@ function openLesson(lessonId) {
       <p style="color: var(--text-secondary); margin-bottom: 1rem;">${lesson.description}</p>
       <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
         <span style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem;">
-          ⏱️ ${lesson.duration}
+          <i class="fas fa-clock" aria-hidden="true"></i> ${lesson.duration}
         </span>
         <span style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem;">
           ${lesson.difficulty}
@@ -129,10 +129,10 @@ function closeLessonModal() {
 
 function updateSidebar() {
   const profile = academyState.profile;
-  const avatars = ['👤', '🔐', '🛡️', '👨‍💻', '👩‍💻'];
+  const avatars = ['fa-user', 'fa-lock', 'fa-shield-halved', 'fa-user-tie', 'fa-user-ninja'];
   const avatarIndex = parseInt(profile.avatar.split('-')[1]) % avatars.length;
 
-  document.getElementById('sidebar-avatar').textContent = avatars[avatarIndex] || '👤';
+  document.getElementById('sidebar-avatar').innerHTML = `<i class="fas ${avatars[avatarIndex] || 'fa-user'}" aria-hidden="true"></i>`;
   document.getElementById('sidebar-username').textContent = profile.displayName;
   document.getElementById('sidebar-level').textContent = `Level ${profile.level}`;
   document.getElementById('sidebar-xp').textContent = `${profile.totalXP} XP`;

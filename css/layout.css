@@ -81,6 +81,11 @@ body {
   font-size: 1.5rem;
 }
 
+.user-avatar i {
+  font-size: 1.25rem;
+  color: var(--bg-primary);
+}
+
 .user-name {
   font-weight: 600;
   margin-bottom: 0.25rem;
@@ -130,6 +135,10 @@ body {
   color: var(--bg-primary);
   border-color: var(--accent-primary);
   font-weight: 500;
+}
+
+.nav-item.active .nav-icon i {
+  color: var(--bg-primary);
 }
 
 .nav-icon {
@@ -415,9 +424,7 @@ body {
 }
 
 .empty-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  opacity: 0.5;
+  font-size: 1.5rem;
 }
 
 .empty-title {

@@ -38,6 +38,10 @@
   font-size: 1.5rem;
 }
 
+.auth-icon i {
+  color: var(--bg-primary);
+}
+
 .auth-card h1 {
   margin-bottom: 0.5rem;
 }

@@ -46,6 +46,28 @@
   --border-color: #E2E8F0;
 }
 
+i[class^="fa-"],
+i[class*=" fa-"] {
+  color: var(--accent-primary);
+}
+
+.btn-primary i {
+  color: var(--bg-primary);
+}
+
+.icon-tile {
+  display: inline-grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-primary);
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04), 0 0 18px rgba(34, 197, 94, 0.06);
+}
+
 html, body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background-color: var(--bg-primary);

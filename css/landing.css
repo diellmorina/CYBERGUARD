@@ -174,9 +174,7 @@
 }
 
 .feature-icon {
-  font-size: 3rem;
-  color: var(--accent-primary);
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 .feature-card h3 {
